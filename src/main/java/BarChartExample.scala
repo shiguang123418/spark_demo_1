@@ -13,7 +13,6 @@ class BarChartExample extends ApplicationFrame("JFreeChart 柱状图示例") {
   def createChart(): Unit = {
     val jedis = new Jedis("localhost", 6379)
     val cityKeys = jedis.keys("orders:citymoney:*").toArray.map(_.toString)
-    println(s"Redis city keys: ${cityKeys.mkString(", ")}")
     val dataset = new DefaultCategoryDataset()
     cityKeys.foreach { key =>
       val province = jedis.hget(key, "province") // 获取城市名

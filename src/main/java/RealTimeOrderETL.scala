@@ -104,15 +104,15 @@ object RealTimeOrderETL extends Logging{
       //          .option("value.serializer","org.apache.kafka.common.serialization.StringSerializer")
       // 流式应用，需要启动start
       .start()
-    val query1: StreamingQuery = etlStreamDF
-      .select(to_json(struct(etlStreamDF.columns.map(col(_)):_*)) as "value")
-      .writeStream
-      .outputMode(OutputMode.Append())
-      .format("console") // 控制台输出
-      .option("truncate", "false") // 不截断内容
-      .start()
+//    val query1: StreamingQuery = etlStreamDF
+//      .select(to_json(struct(etlStreamDF.columns.map(col(_)):_*)) as "value")
+//      .writeStream
+//      .outputMode(OutputMode.Append())
+//      .format("console") // 控制台输出
+//      .option("truncate", "false") // 不截断内容
+//      .start()
     query.awaitTermination()
-    query1.awaitTermination()
+//    query1.awaitTermination()
     query.stop()
   }
 }
